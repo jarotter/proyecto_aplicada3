@@ -1,35 +1,32 @@
 # Brainstorming
 
-## Motivación
+#### Motivación (5 min)
 
-+ Maldición de la dimensionalidad.
-+ Técnicas de reducción de dimensión: diferentes approaches (sólo PCA y MDS porque son los que vimos). Explicar mantener estructura local con manifolds (intuitivamente).
+- Maldición de la dimensionalidad
 
-## Técninco
+  - Ejemplito de Hasti o Cesar Luis
+  - Mencionar la escuela manifoldiana y la machinlernista
 
-+ Divergencia de KL.
-+ Construcción de SNE siguiendo el paper.
-  + Simétrico
-  + t-SNE
+  - Somos la escuela machinlernista (que preserve información)
+  - KL
 
-## Aplicado
+#### Algoritmo (5 min)
 
-+ Toy example (MNIST)
-  + La cosa de los 6 gordos
-+ Interpretabilidad
+- T-sne
+  - Como el paper pero corto.
+- Aquí meter clústering (cosas técnicas)
 
-## Proyecto
+#### Práctica (6 min)
 
-+ Elegir algo bonito. Opciones
-  + audio t-SNE
-  + image 
-  + word embedding
+- https://distill.pub/2016/misread-tsne/
+  - Perpléxity visualizado (2 min)
+- MNIST y Texto (4 min) (http://hint.fm/ vs  https://dash-gallery.plotly.host/dash-tsne)
 
-## Extensiones (?)
+#### Extensiones (4 min)
 
-+ Árboles
-+ Series de tiempo
-+ *Clustering*
-
-## TEORÍA: MÍERCOLES 28
+- No-métrico (múltiple MAPS) (1.33 min)
+- Paramétricos (1.33 min)
+  - Lineal
+  - Kernelizado
+- Estructura global (UMAP) (1.34 min)
 
