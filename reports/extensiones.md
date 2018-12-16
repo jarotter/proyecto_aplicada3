@@ -14,3 +14,9 @@ con la constante de normalización apropiada para que sumen uno. Al optimizar la
 
 #### t-SNE paramétrico
 
+Otro problema de t-SNE es que no se extiende a nuevas observaciones. Supongamos que se corrió t-SNE sobre un conjunto de datos $X \in \mathcal{M}_{n\times p}(\mathbb{R})$ y que recibimos una nueva observación $\mathbf{x}_{n+1}$. ¿Cuáles deberían ser sus coordenadas en el nuevo espacio? t-SNE tradicional no da una manera de asignarlo porque es un método no-paramétrico; no hay manera de relacionar una nueva observación porque no estuvo en el proceso inicial.
+
+Laures van der Maaten propone en [4] una parametrización de t-SNE usando una red neuronal profunda entrenada en partes: primero se preentrena una pila de máquinas de Boltzmann restringidas (modelos gráficos bipartitos completos) y después se entrena con backpropagation.
+
+Un método menos efectivo pero mucho más sencillo fue propuesto por Gisbrecht, Shulz y Hammer en [5]. 
+
