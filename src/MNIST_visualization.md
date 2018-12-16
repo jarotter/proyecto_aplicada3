@@ -66,8 +66,8 @@ with open('data/mnist.pkl', 'rb') as f:
 #### Runs t-SNE
 
 ```python
-n = 30000
-tsne = TSNE(n_components=2,random_state=1000,n_iter=2000,perplexity=35)
+n = 50000
+tsne = TSNE(n_components=2,random_state=1000,perplexity=35)
 x_tsne = tsne.fit_transform(train_set[0][:n])
 ```
 
