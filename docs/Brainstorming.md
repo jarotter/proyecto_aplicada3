@@ -1,6 +1,6 @@
 # Brainstorming
 
-#### Motivación (5 min)
+#### Introducción (5 min)
 
 - Maldición de la dimensionalidad
 
@@ -10,13 +10,13 @@
   - Somos la escuela machinlernista (que preserve información)
   - KL
 
-#### Algoritmo (5 min)
+#### Algoritmo (5 min) 
 
-- T-sne
+- Derivación t-sne
   - Como el paper pero corto.
-- Aquí meter clústering (cosas técnicas)
+- Aquí meter clústering (cosas técnicas)   
 
-#### Práctica (6 min)
+#### Visualizaciones (6 min)
 
 - https://distill.pub/2016/misread-tsne/
   - Perpléxity visualizado (2 min)
@@ -24,9 +24,9 @@
 
 #### Extensiones (4 min)
 
-- No-métrico (múltiple MAPS) (1.33 min)
-- Paramétricos (1.33 min)
+- No-métrico (múltiple MAPS) (2 min)
+- Paramétricos (1 min)
   - Lineal
   - Kernelizado
-- Estructura global (UMAP) (1.34 min)
+- Estructura global (UMAP) (1 min)
 
