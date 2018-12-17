@@ -23,11 +23,11 @@ $$
 1. *Los datos están clusterisados*: existe un número natural $k$ (el número de clusters) y un mapeo que asigna a cada punto a uno de los clusters $\pi : \{1,...n\} \to \{1,...,k\}$  y que cumple
 
 $$
-p_{ij} \geq \frac{1}{10n\vert \pi^{-1}(\pi(i))\vert} \quad \text{si} \ \pi(x_i) = \pi(x_j)
+p_{ij} \geq \frac{1}{10n\vert \pi^{-1}(\pi(i))\vert} \quad \text{si} \ \pi(\mathbf{x}_i) = \pi(\mathbf{x}_j)
 $$
-​    Observemos que $\vert \pi^{-1}(\pi(i))\vert$ no es más que el tamaño del cluster en que se encuentra $x_i$.
+​    Observemos que $\vert \pi^{-1}(\pi(i))\vert$ no es más que el tamaño del cluster en que se encuentra $\mathbf{x}_i$.
 
-2. *Elección de parámetros*: $\beta$ y $h$ son elegidos de forma que para algún $i \in \{1,...,n\}$ 
+2. *Elección de parámetros*: $\beta$ y $h$ son elegidos de forma que para algún $i \in \{1,...,n\}$
 
 $$
 \frac{1}{100} \leq \alpha h, \quad \quad \sum_{\substack{j \not = i \\\pi(j)= \pi(i)}}p_{ij} \leq \frac{9}{10}
@@ -36,7 +36,7 @@ $$
 
 ###### Teorema
 
-Sea $\mathcal{C}_i$ el i-ésimo cluster, es decir $\mathcal{C}_i := \{y_i | 1 \leq j \leq n \ y \ \pi(j) = \pi(i) \}$. El diámetro del cluster $\mathcal{C}_i$ decae exponencialmente (a una tasa universal) hasta satisfacer
+Sea $\mathcal{C}_i$ el i-ésimo cluster, es decir $\mathcal{C}_i := \{\mathbf{y}_i | 1 \leq j \leq n \ y \ \pi(j) = \pi(i) \}$. El diámetro del cluster $\mathcal{C}_i$ decae exponencialmente (a una tasa universal) hasta satisfacer
 $$
 diam(\mathcal{C}_i) \leq c \ h\left( \beta \sum_{\substack{j \not = i \\\pi(j)\not= \pi(i)}}p_{ij} \right)
 $$
@@ -52,7 +52,7 @@ Elecciones con dicha configuración conducen a una tasa de convergencia exponenc
 $$
 \kappa \sim 1 - \frac{\beta h}{n}
 $$
-Notemos que si $\beta h \geq n $ se rompe la convergencia del algoritmo. 
+Notemos que si $\beta h \geq n $ se rompe la convergencia del algoritmo.
 
 La elección de parámetros por *regla de dedo* para t-SNE es $\beta \sim 12$ y $h \sim 200$, notemos que para $n\leq 24000$ cumple con la configuración propuesta, sin embargo, si el número de observaciones es mayor se viola la cota inferior correspondiente desacelerando la convergencia.
 
