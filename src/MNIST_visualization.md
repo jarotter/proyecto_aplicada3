@@ -23,6 +23,8 @@ jupyter:
     version: 3.7.0
 ---
 
+## Apéndice D
+
 ```python
 from sklearn.datasets import *
 from sklearn.manifold import TSNE
