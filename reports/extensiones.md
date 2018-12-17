@@ -81,3 +81,21 @@ Los autores recomiendan elegir el ancho de banda $\sigma_j$ como un múltiplo de
 
 
 
+#### Reducción de dimensiones supervisada y un poco de geometría
+
+Hasta ahora nos hemos enfocado en el problema no supervisado de reducción de dimensiones, pero en algunos casos cada punto $\mathbf{x}_i$ tiene asociada una etiqueta $g_i$ de entre un número finito $\mathscr{G}$ de ellas, e interesa encontrar una representación $\mathbf{y}_i$ que muestre las características relevantes para $g_i$. Para ello haremos uso de algunos conceptos de geometría diferencial que introducimos brevemente en el apéndice B.
+
+Queremos construir una métrica que considere las diferencias entre $\mathbf{x}$ y sus puntos cercanos sólo según su importancia para $g$, por lo que interesa medir cambios en $p(g|\mathbf{x})$. Una manera de medir distancia entre distribuciones es la divergencia de Kullback-Leibler, y como se menciona en el apéndice A, la matriz de información de Fisher en el punto $\mathbf{x}$
+$$
+\mathcal{I}(\mathbf{x})=\mathbb{E}_{p(g|\mathbf{x})}\left[\left(\nabla_x\log p(g|\mathbf{x})\right)\left(\nabla_x\log p(g|\mathbf{x})\right)^\top\right]
+$$
+es proporcional a la divergencia de Kullback-Leibler entre $\mathbf{x}$ y los puntos en una vecindad suya. 
+
+En cada punto existe entonces una matriz positiva definida $\mathcal{I}(\mathbf{x})$  que induce naturalmente el producto interno $\mathbf{z}^\top\mathcal{I}(\mathbf{x})\mathbf{z}$ en una vecindad de $\mathbf{x}$. Intuitivamente, este producto interno escala las dimensiones de $\mathbf{z}$ en los ejes y proporciones necesarias para $g$. Esta matriz induce la métrica de Fisher
+$$
+d(\mathbf{x}, \mathbf{x'})=\inf_{\gamma}\int_0^1\|\gamma(t)\|_\mathcal{I}dt
+$$
+donde $\gamma$ es una curva suave con $\gamma(0)=\mathbf{x}$ y $\gamma(1) = \mathbf{x}'$; y $\|\cdot\|_\mathcal{I}$ es la norma  inducida por el producto interno $\mathcal{I}(\cdot)$ en ese punto. 
+
+En la práctica hay que estimar $p(g|\mathbf{x})$ con los datos y después estimar las integrales de trayectoria.  Referimos a [6] para detalles, pero basta saber que puede hacerse con el estimador no paramétrico de Parzen y el método de aproximaciones T. 
+
