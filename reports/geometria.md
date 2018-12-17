@@ -4,7 +4,7 @@
 
 Una *variedad p-dimensional* es un espacio Hausdorff paracompacto localmente homeomorfo a $ \mathbb{R} ^p$. A cada homeomorfismo se le llama *carta*, y al conjunto de ellas *atlas*. 
 
-> Explicación:
+> *Explicación:*
 >
 > Una variedad es un espacio localmente plano. Por ejemplo, aunque la tierra sea una esfera no nos damos cuenta a menos que veamos a un horizonte sin estorbos, pues cerca de nosotros parece que vivimos en un mundo plano.
 
@@ -14,7 +14,7 @@ Una *variedad p-dimensional* es un espacio Hausdorff paracompacto localmente hom
 
 Un *mapa de transición* es la composición de una carta $\varphi_x$ con la inversa de otra carta $.\varphi_y^{-1}$
 
-> Explicación:
+> *Explicación:*
 >
 > Los mapas de transición definen homeomorfismos entre abiertos de la variedad. La idea es pasar de la variedad al espacio plano y de ahí regresar a otro abierto en la variedad. 
 
@@ -30,7 +30,7 @@ Una variedad es *suave* si todos sus mapas de transición son de clase $C^\infty
 
 Sea $\mathcal{M}$ una variedad suave y $ x \in \mathcal{M}$. El *espacio tangente a* $\mathcal{M}$ *en* $ x$ , $T_x\mathcal{M}$ es el conjunto  de todos los vectores tangentes a $x$
 
-> Explicación:
+> *Explicación:*
 >
 > Aunque es posible formalizar el concepto para que no dependa del espacio ambiente, podemos pensar que una variedad $q$-dimensional está embedida en un espacio con dimensión $p$ más grande e imaginar $T_x\mathcal{M}$ como el hiperplano afín tangente a $\mathcal{M}$ en $x$.
 
