@@ -23,17 +23,17 @@ suponiendo que los $\mathbf{y}$ de las tres palabras quedan cerca) $1/3 \times
 
 Una ventaja más es que podemos representar de mejor manera la centralidad. Recordemos que para tener $k$ puntos equidistantes en $\mathbb{R}^p$, necesitamos $p\geq k-1$, por lo que t-SNE no puede representar las situaciones en las que más de tres (en el caso bidimensional) puntos tienen como más cercano a un mismo punto central. La extensión con mapas múltiples lo resuelve de la misma manera, asignando importancias cero en algunos mapas para conseguir que en el conjunto de todos los mapas se represente la centralidad. 
 
-En la práctica surgen complicaciones como elegir $M$, el número de mapas. De manera similar a la elección de $k$ en kNN, la elección se puede hacer a través de manera gráfica. Para algún número predeterminado $M$, graficamos la razón de preservación de vecindades usando $m=1, \cdots, M$ mapas, y el comportamiento asintótico de la gráfica (pues eventualmente se capturó ya toda la estructura y no se necesitan más mapas) da un buen punto de corte. 
+En la práctica surgen complicaciones como elegir $M$, el número de mapas. De manera similar a la elección de $k$ en kNN,  se puede hacer a través de manera gráfica. Para algún número predeterminado $M$, graficamos la razón de preservación de vecindades usando $m=1, \cdots, M$ mapas, y el comportamiento asintótico de la gráfica (pues eventualmente se capturó ya toda la estructura y no se necesitan más mapas) da un buen punto de corte. 
 
 ###### Definición 
 
 La *razón de preservación de vecindades* es 
 $$
-\rho(m,k)=\frac{1}{n}\sum_{i=1}^n\frac{1}{\#\mathcal{N}_k(\mathbf{y}_i)}\sum_{\mathbf{y}_j\in\mathcal{N}_k(\mathbf{y}_i)}[\mathbf{x}_j\in\mathcal{N}_k(\mathbf{x}_i)]
+\rho(k)=\frac{1}{nk}\sum_{i=1}^n\sum_{\mathbf{y}_j\in\mathcal{N}_k(\mathbf{y}_i)}[\mathbf{x}_j\in\mathcal{N}_k(\mathbf{x}_i)]
 $$
 
 
-donde $\mathcal{N}_k(\mathbf{w})$ es el conjunto de los $k$ vecinos más cercanos a $\mathbf{w}$, y $[P]$ vale 1 si $P$ 					es cierto ó 0 si es falso. Es decir, para cada punto  $i$ se calcula la proporción dentro de sus $k$ vecinos más cercanos en $\mathbb{R}^q$ son también vecinos más cercanos en $\mathbb{R}^p$.  
+donde $\mathcal{N}_k(\mathbf{w})$ es el conjunto de los $k$ vecinos más cercanos a $\mathbf{w}$, y $[P]$ vale uno si $P$ es cierto o cero si es falso. Es decir, para cada punto  $i$ se calcula la proporción dentro de sus $k$ vecinos más cercanos en $\mathbb{R}^q$ son también vecinos más cercanos en $\mathbb{R}^p$.  
 
 Elegir  $M$ con esta medida corresponde a lo que un usuario haría normalmente: revisar todos los mapas en busca de relaciones significativas entre palabras, y quedarse sólo con las que le aportan algo. 
 
@@ -79,7 +79,68 @@ por lo que $f_w(\mathbf{x}_j)=\mathbf{y}_j \ _\square$.
 
 Los autores recomiendan elegir el ancho de banda $\sigma_j$ como un múltiplo de la distancia de la observación $\mathbf{x}_j$ a su vecino más cercano.
 
+###### Algoritmo: kernel t-SNE
 
+```pseudocode
+class kernel_tsne:
+	def train(x, perplexity, q):
+	""" Entrena t-SNE kernelizado.
+
+		Parámetros:
+		-----------
+		x (matriz de nxp):
+			Los datos
+		perplexity (real):
+			Parámetro de t-SNE
+		p (2 o 3):
+			Dimensiones para t-SNE
+	
+		Regresa:
+		--------
+		(matriz de nxn): 
+			La matriz K explicada arriba.
+		(matriz de nx2):
+			Las coordenadas de los puntos en R^q
+	"""
+		distancias = calcular_distancias_pares(x, x)
+	
+		Y = tsne(distancias, perplexity)
+		sigma = elegir_sigmas(distancias)
+	
+		for all (i,j) in d_planas:
+			K[i,j] = k(x[i], x[j])/sum(k(x[i], x))
+	
+		return (K,Y)
+	
+	def fit(x_nuevas):
+	""" Proyecta puntos nuevos.
+	
+		Suponemos además que se tiene acceso a los puntos usados por el
+		método train como x_viejas y a las matrices K y Y_vieja que arroja.
+	
+		Parámetros:
+		-----------
+		x_nuevas (matriz de nxp'):
+			Observaciones nuevas.
+		
+		Regresa:
+		--------
+		(matriz de nxq):
+			Coordenadas de los nuevos puntos.
+			
+			
+	"""
+	
+	distancias = calcular_distancias(x_viejas,x_nuevas)
+	
+	A = pseudoinversa(K)*Y_vieja
+	
+	for all (i,j) in d_planas:
+		K[i,j] = k(x[i], x[j])/sum(k(x[i],x))
+	
+	Y = K*A
+	return Y
+```
 
 #### Reducción de dimensiones supervisada y un poco de geometría
 
@@ -97,5 +158,73 @@ d(\mathbf{x}, \mathbf{x'})=\inf_{\gamma}\int_0^1\|\gamma(t)\|_\mathcal{I}dt
 $$
 donde $\gamma$ es una curva suave con $\gamma(0)=\mathbf{x}$ y $\gamma(1) = \mathbf{x}'$; y $\|\cdot\|_\mathcal{I}$ es la norma  inducida por el producto interno $\mathcal{I}(\cdot)$ en ese punto. 
 
-En la práctica hay que estimar $p(g|\mathbf{x})$ con los datos y después estimar las integrales de trayectoria.  Referimos a [6] para detalles, pero basta saber que puede hacerse con el estimador no paramétrico de Parzen y el método de aproximaciones T. 
+En la práctica hay que estimar $p(g|\mathbf{x})$ con los datos y después estimar las integrales de trayectoria.  Referimos a [5] para detalles, pero basta saber que puede hacerse con el estimador no paramétrico de Parzen e integrales sobre rectas. 
+
+A continuación resumimos el algoritmo, que es muy similar al t-SNE kernelizado original.
+
+###### Algoritmo: Fisher kernel t-SNE
+
+```pseudocode
+class fisher_kernel_tsne:
+	def train(x, perplexity, q):
+	""" Entrena t-SNE kernelizado con la distancia de Fisher.
+
+		Parámetros:
+		-----------
+		x (matriz de nxp):
+			Los datos
+		perplexity (real):
+			Parámetro de t-SNE
+		p (2 o 3):
+			Dimensiones para t-SNE
+	
+		Regresa:
+		--------
+		(matriz de nxn): 
+			La matriz K explicada arriba.
+		(matriz de nx2):
+			Las coordenadas de los puntos en R^q
+	"""
+		d_fisher = calcular_distancias_fisher_pares(x, x)
+		d_planas = calcular_distancias_pares(x, x)
+	
+		Y = tsne(d_fisher, perplexity)
+		sigma = elegir_sigmas(d_planas)
+	
+		for all (i,j) in d_planas:
+			K[i,j] = k(x[i], x[j])/sum(k(x[i], x))
+	
+		return (K,Y)
+	
+	def fit(x_nuevas):
+	""" Proyecta puntos nuevos.
+	
+		Suponemos además que se tiene acceso a los puntos usados por el
+		método train como x_viejas y a las matrices K y Y_vieja que arroja.
+	
+		Parámetros:
+		-----------
+		x_nuevas (matriz de nxp'):
+			Observaciones nuevas.
+		
+		Regresa:
+		--------
+		(matriz de nxq):
+			Coordenadas de los nuevos puntos.
+			
+			
+	"""
+	
+	d_planas = calcular_distancias(x_viejas,x_nuevas)
+	
+	A = pseudoinversa(K)*Y_vieja
+	
+	for all (i,j) in d_planas:
+		K[i,j] = k(x[i], x[j])/sum(k(x[i],x))
+	
+	Y = K*A
+	return Y
+```
+
+Notemos que el proceso geométrico complicado sólo ocurre una vez, y extender a nuevos puntos es computacionalmente menos costoso. 
 
