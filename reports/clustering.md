@@ -1,8 +1,6 @@
 ## Clustering y convergencia
 
-t-SNE es una de las herramientas más utilizadas para realizar reducción de dimensión y visualización de datos en altas dimensiones, en general las visualizaciones producidas muestran la formación de clusters naturales en los datos, sin embargo, tanto los autores del método como la comunidad estadística en general no utilizan algoritmos de clusterización sobre resultados obtenidos por t-SNE puesto que no se tienen resultados teóricos sobre la estructura de el mapeo producido.
-
-A continuación presentamos un estudio realizado por Linderman y Steinerberger en el 2017 que presenta condiciones ideales sobre los datos asi como requisitos sobre la elección óptima parámetros para asegurar la convergencia y la formación de clusters.
+A continuación presentamos un estudio realizado por Linderman y Steinerberger [9] que presenta condiciones ideales sobre los datos asi como requisitos sobre la elección óptima parámetros para asegurar la convergencia y la formación de clusters.
 
 ###### Recordatorio
 
@@ -22,7 +20,7 @@ $$
 
 ###### Suposiciones
 
-1. *X está cluterizado*: existe un número natural k (el número de clusters) y un mapeo que asigna a cada punto a uno de los clusters $\pi : \{1,...n\} \to \{1,...,k\}$  y que cumple
+1. *Los datos están clusterisados*: existe un número natural $k$ (el número de clusters) y un mapeo que asigna a cada punto a uno de los clusters $\pi : \{1,...n\} \to \{1,...,k\}$  y que cumple
 
 $$
 p_{ij} \geq \frac{1}{10n\vert \pi^{-1}(\pi(i))\vert} \quad \text{si} \ \pi(x_i) = \pi(x_j)
@@ -42,11 +40,7 @@ Sea $\mathcal{C}_i$ el i-ésimo cluster, es decir $\mathcal{C}_i := \{y_i | 1 \l
 $$
 diam(\mathcal{C}_i) \leq c \ h\left( \beta \sum_{\substack{j \not = i \\\pi(j)\not= \pi(i)}}p_{ij} \right)
 $$
-Para alguna constante $c > 0 $
-
-> *Demostración*
->
-> Ver paper
+Para alguna constante $c > 0 \ _\square$
 
 ###### Algunos resultados
 
