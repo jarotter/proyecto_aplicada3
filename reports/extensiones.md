@@ -41,6 +41,8 @@ Al evaluar t-SNE con mapas múltiples hay que tener en mente la asimetría de 
 
 Sin embargo, ventajas sobre los modelos de tópicos son que t-SNE con mapas múltiples permite estudiar estructuras y relaciones sutiles entre las palabras que un modelo de tópicos no encontraría y puede entrenarse sólo con una matriz de disimilaridades. 
 
+En el apéndice C presentamos una corrida de t-SNE con 10 mapas en sobre un conjunto de 100 palabras. 
+
 [^1]: En realidad se entrenan pesos $w_i^{(m)}$ sin restricciones para usar descenso en gradiente, y después basta usar $\pi_i^{(m)} \propto e^{-w_i^{(m)}}$.
 
 #### t-SNE paramétrico
