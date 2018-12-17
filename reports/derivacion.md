@@ -203,7 +203,7 @@ $F_{a}$ denota la suma de todas las fuerzas *atractivas* y su cálculo ya es com
 
 $F_r$ denota la suma de fuerzas repulsivas y hasta el momento su cálculo presenta una complejidad de  $O(N^2)$, a continuación presentamos el algoritmo de Barnes-Hut que nos permitirá reducir la complejidad de la obtención de $F_r$ a $O(N\log N)$.
 
-Considérense 3 puntos $\mathbf{y}_i, \mathbf{y}_j$ y $\mathbf{y}_k$ donde $\Vert \mathbf{y}_i - \mathbf{y}_j \Vert \approx \Vert \mathbf{y}_i - \mathbf{y}_k \Vert \gg \Vert \mathbf{y}_j - \mathbf{y}_k \Vert$. Entonces la diferencia entre las contribuciones de $\mathbf{y}_k$ y de $\mathbf{y}_j$ a $\sum_j q_{ij}^2(\mathbf{y}_i-\mathbf{y}_j)Z$ es prácticamente nula. El algoritmo de Barnes-Hut explota esta idea creando $m $ grupos ($g_1, ... g_n$) de puntos en $\{y_k\}_{k\not = i }$ tales que para cada grupo se cumplen las condiciones recién dadas.Podemos estimar $\sum_j q_{ij}^2(y_i-y_j)Z$ con
+Considérense 3 puntos $\mathbf{y}_i, \mathbf{y}_j$ y $\mathbf{y}_k$ donde $\Vert \mathbf{y}_i - \mathbf{y}_j \Vert \approx \Vert \mathbf{y}_i - \mathbf{y}_k \Vert \gg \Vert \mathbf{y}_j - \mathbf{y}_k \Vert$. Entonces la diferencia entre las contribuciones de $\mathbf{y}_k$ y de $\mathbf{y}_j$ a $\sum_j q_{ij}^2(\mathbf{y}_i-\mathbf{y}_j)Z$ es prácticamente nula. El algoritmo de Barnes-Hut explota esta idea creando $m $ grupos ($g_1, ... g_n$) de puntos en $\{y_k\}_{k\not = i }$ tales que para cada grupo se cumplen las condiciones recién dadas. Podemos estimar $\sum_j q_{ij}^2(y_i-y_j)Z$ con
 $$
 \sum_{j=1}^m |g_j| \ q_{i,g_j} (y_i - y_{g_j})Z_{g_j}
 $$
@@ -221,3 +221,8 @@ Usando *quadtrees* podemos encontrar encontrar los grupos de arriba.
 | ----------------------------------- | ----------------------------------- |
 |                                     |                                     |
 
+#### Ejemplo
+
+A continuación mostramos una visualización interactiva de t-SNE sobre el famoso dataset MNIST.
+
+<iframe height=1010, width=1010, src="https://s3-us-west-2.amazonaws.com/mnist-imgs/t-SNE_MNIST.html"></iframe>
