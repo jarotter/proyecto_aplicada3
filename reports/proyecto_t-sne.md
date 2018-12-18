@@ -1,3 +1,5 @@
+# Reducción de dimensionalidad con  t distributed stochastic neighbor embedding (t-SNE)
+
 ## Introducción
 
 #### La maldición de la dimensionalidad
