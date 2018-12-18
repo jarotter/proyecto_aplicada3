@@ -35,3 +35,6 @@ La base completa consiste en 70,000 imágenes de dígitos escritos a mano. De al
 
 En este proyecto presentaremos un algoritmo que preserva la estructura local de los datos para conseguir muy buenos resultados en reducción de dimensionalidad, y discutiermos brevemente un segundo algoritmo que combina la preservación de estructura global y local.
 
+###### Notación
+
+A lo largo de este documento, trabajamos con una muestra aleatoria $\mathbf{X} \in \mathcal{M}_{n\times p}$ , donde la fila $i$ corresponde a la observación $\mathbf{x}_i = (x_{i1}, x_{i2}, \cdots, x_{ip})^\top$. Buscamos inmersiones $ \mathbf{y}_i =\mathbf{y}(\mathbf{x}_i)\in\mathbb{R}^q$ y nos limitamos a $q \in \{2, 3\}$.  
